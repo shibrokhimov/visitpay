@@ -1,1 +1,51 @@
-
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<title>VisitPay — Rewards</title>
+<style>
+:root{--bg:#080b14;--panel:#111827;--panel2:#172238;--blue:#1677ff;--cyan:#39b8ff;--text:#f5f8ff;--muted:#91a0b8;--line:#26344c;--gold:#f5c451}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -15%,#17366c 0,#080b14 38%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+.app{max-width:480px;margin:auto;padding:22px 17px 100px}.top{display:flex;align-items:center;justify-content:space-between;margin:5px 0 24px}.brand{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:850;letter-spacing:-.8px}.brandmark{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#39b8ff,#0755e8);display:grid;place-items:center;box-shadow:0 6px 24px #087bff55}.brandmark svg{width:25px}.tag{font-size:11px;color:#9bbcff;border:1px solid #244b85;padding:6px 9px;border-radius:30px;background:#10213d}
+h1{font-size:25px;line-height:1.2;margin:8px 0 5px;letter-spacing:-.7px}.sub{color:var(--muted);font-size:13px;margin:0 0 19px}
+.balance{padding:21px;border-radius:22px;background:linear-gradient(125deg,#145bd6,#10378b 70%,#102a61);box-shadow:0 15px 40px #005cff25;position:relative;overflow:hidden}.balance:after{content:"$";position:absolute;right:18px;top:-24px;font-size:150px;font-weight:900;color:#ffffff0d}.balabel{font-size:13px;color:#d8e7ff}.amount{font-size:36px;font-weight:850;letter-spacing:-1.3px;margin:8px 0 16px}.balrow{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#d5e5ff}.pill{background:#ffffff20;padding:7px 10px;border-radius:30px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:14px 0 24px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}.stat small{color:var(--muted);font-size:11px}.stat strong{display:block;font-size:19px;margin-top:6px}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:22px 0 12px}.sectionhead h2{font-size:17px;margin:0}.sectionhead span{font-size:11px;color:var(--muted)}
+.video{display:flex;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);padding:11px;border-radius:17px;margin-bottom:10px}.thumb{width:91px;height:67px;border-radius:12px;flex:none;display:grid;place-items:center;background:linear-gradient(135deg,#163a73,#1479d8);font-size:26px}.video:nth-of-type(2) .thumb{background:linear-gradient(135deg,#4b267d,#ad4f9b)}.video:nth-of-type(3) .thumb{background:linear-gradient(135deg,#135c55,#29a58b)}.vinfo{min-width:0;flex:1}.vinfo b{display:block;font-size:13px;margin-bottom:5px}.vinfo small{color:var(--muted);font-size:11px}.reward{color:#80c4ff;font-size:12px;font-weight:700;margin-top:5px}.watch{border:0;border-radius:11px;padding:10px 12px;background:var(--blue);color:white;font-weight:700;font-size:12px}
+.note{border:1px solid #574721;background:#241e11;color:#e9d59d;border-radius:13px;padding:12px;font-size:11px;line-height:1.5;margin-top:18px}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0b1020ed;border-top:1px solid var(--line);backdrop-filter:blur(14px);display:flex;justify-content:center;z-index:5}.navinner{max-width:480px;width:100%;display:flex;justify-content:space-around;padding:10px 8px calc(10px + env(safe-area-inset-bottom))}.nav button{background:none;border:0;color:#7e8da7;font-size:10px;display:grid;gap:4px;justify-items:center}.nav button.active{color:#64b6ff}.nav i{font-style:normal;font-size:19px}
+.page{display:none}.page.active{display:block}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:16px;margin:12px 0}.primary{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:13px 16px;font-weight:750;width:100%;margin-top:12px}.field{width:100%;background:#0b1220;border:1px solid var(--line);color:white;padding:13px;border-radius:11px;margin-top:8px}.muted{color:var(--muted);font-size:12px;line-height:1.55}.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#18345d;border:1px solid #347bd1;color:#fff;padding:11px 16px;border-radius:12px;font-size:13px;display:none;z-index:9;max-width:90%;text-align:center}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<main class="app">
+<header class="top"><div class="brand"><span class="brandmark"><svg viewBox="0 0 32 32" fill="none"><path d="M5 4h9l13 12-13 12H5l13-12L5 4Z" fill="white"/><path d="M15 4h5l9 12-9 12h-5l9-12-9-12Z" fill="#8bd4ff"/></svg></span>Visit<span style="color:#55aaff">Pay</span></div><span class="tag">DEMO APP</span></header>
+<section id="home" class="page active">
+<h1>Welcome to VisitPay!</h1><p class="sub">Watch videos and explore the rewards experience.</p>
+<div class="balance"><div class="balabel">Demo Balance</div><div class="amount" id="balance">$0.00</div><div class="balrow"><span>Your VisitPay account</span><span class="pill">● DEMO MODE</span></div></div>
+<div class="stats"><div class="stat"><small>Today’s Demo Earnings</small><strong id="today">$0.00</strong></div><div class="stat"><small>Videos Completed</small><strong id="watched">0</strong></div></div>
+<div class="sectionhead"><h2>Videos</h2><span>Sample tasks</span></div>
+<div id="videoList"></div>
+<div class="note">This is a prototype. Rewards shown are simulated, are not real money, and cannot be withdrawn. Real rewards can only be enabled after advertiser terms, funding, and server-side verification are in place.</div>
+</section>
+<section id="tasks" class="page"><h1>Tasks</h1><p class="sub">Sample tasks and their status.</p><div class="panel"><b>Watch videos</b><p class="muted">Choose a video on the Home page. Your demo balance updates when the timer finishes.</p></div><div class="panel"><b>Daily check-in</b><p class="muted">Coming in a future version.</p></div></section>
+<section id="wallet" class="page"><h1>Wallet</h1><p class="sub">Demo Balance va tranzaksiyalar.</p><div class="panel"><small class="muted">Current demo balance</small><div class="amount" id="walletBalance">$0.00</div><button class="primary" onclick="toast('Withdrawals are disabled in demo mode.')">Request withdrawal</button><p class="muted">Real payments are not available yet.</p></div><div class="sectionhead"><h2>Transactions</h2></div><div id="history" class="panel muted">No transactions yet.</div></section>
+<section id="profile" class="page"><h1>Profile</h1><p class="sub">Your VisitPay demo account.</p><div class="panel"><b>User</b><p class="muted">Guest · Telegram connection not configured</p><hr style="border:0;border-top:1px solid var(--line);margin:14px 0"><b>Account status</b><p class="muted">Demo rejimi</p></div></section>
+</main>
+<nav class="nav"><div class="navinner"><button class="active" data-page="home"><i>⌂</i>Home</button><button data-page="tasks"><i>▤</i>Tasks</button><button data-page="wallet"><i>◈</i>Wallet</button><button data-page="profile"><i>◎</i>Profile</button></div></nav>
+<script>
+const items=[{title:"Technology Highlights",time:8,reward:.02,icon:"▶"},{title:"Travel Feature",time:10,reward:.03,icon:"▷"},{title:"Educational Video",time:12,reward:.04,icon:"▶"}];
+let balance=0,watched=0,history=[];
+const fmt=n=>"$"+n.toFixed(2);
+function toast(t){const el=document.getElementById('toast');el.textContent=t;el.style.display='block';setTimeout(()=>el.style.display='none',2600)}
+function render(){document.getElementById('balance').textContent=fmt(balance);document.getElementById('walletBalance').textContent=fmt(balance);document.getElementById('today').textContent=fmt(balance);document.getElementById('watched').textContent=watched;document.getElementById('history').innerHTML=history.length?history.map(x=>`<div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #26344c"><span>${x.title}</span><b style="color:#80c4ff">+${fmt(x.reward)}</b></div>`).join(''):'No transactions yet.'}
+function drawVideos(){document.getElementById('videoList').innerHTML=items.map((v,i)=>`<div class="video"><div class="thumb">${v.icon}</div><div class="vinfo"><b>${v.title}</b><small>${v.time}  sec demo preview</small><div class="reward">Demo reward: ${fmt(v.reward)}</div></div><button class="watch" onclick="watchVideo(${i},this)">Watch</button></div>`).join('')}
+function watchVideo(i,btn){if(btn.disabled)return;btn.disabled=true;let left=items[i].time;btn.textContent=left+'s';const timer=setInterval(()=>{left--;btn.textContent=left+'s';if(left<=0){clearInterval(timer);balance+=items[i].reward;watched++;history.unshift({title:items[i].title,reward:items[i].reward});btn.textContent='Completed';btn.style.background='#176b4c';render();toast('Demo topshiriq bajarildi. Demo Balance yangilandi.')}},1000)}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.page).classList.add('active')}));
+drawVideos();render();
+</script>
+</body>
+</html>
